@@ -360,4 +360,8 @@ public class RdmaEndpoint implements DiSNIEndpoint {
 	public int getConnState() {
 		return connState;
 	}
+
+	public RdmaConnParam getConnParam() {
+		return group.getConnParam();
+	}
 }
