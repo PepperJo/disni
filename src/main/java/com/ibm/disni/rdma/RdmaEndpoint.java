@@ -131,7 +131,7 @@ public class RdmaEndpoint implements DiSNIEndpoint {
 			throw new IOException("resolve route failed");
 		}	
 		
-		RdmaConnParam connParam = group.getConnParam();
+		RdmaConnParam connParam = getConnParam();
 		idPriv.connect(connParam);
 		
 		while(connState < CONN_STATE_CONNECTED){
@@ -191,7 +191,7 @@ public class RdmaEndpoint implements DiSNIEndpoint {
 			throw new IOException("resolve route failed");
 		}		
 		
-		RdmaConnParam connParam = group.getConnParam();
+		RdmaConnParam connParam = getConnParam();
 		idPriv.accept(connParam);			
 		while(connState < CONN_STATE_CONNECTED){
 			wait();
