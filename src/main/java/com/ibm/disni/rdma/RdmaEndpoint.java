@@ -212,11 +212,13 @@ public class RdmaEndpoint implements DiSNIEndpoint {
 		}
 		
 		logger.info("closing client endpoint");
-		if (connState != CONN_STATE_CLOSED) {
-			idPriv.disconnect();
-			this.wait(1000);
+		if (connState != CONN_STATE_INITIALIZED) {
+			if (connState != CONN_STATE_CLOSED) {
+				idPriv.disconnect();
+				this.wait(1000);
+			}
+			idPriv.destroyQP();
 		}
-		idPriv.destroyQP();
 		idPriv.destroyId();
 		group.unregisterClientEp(this);
 		isClosed = true;
